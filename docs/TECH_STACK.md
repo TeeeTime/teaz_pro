@@ -227,7 +227,19 @@ temporarily and run `npm run dev -- --mode production`.
   Containers Pulse depends on (Traefik, Keycloak, its Postgres) also get
   `pro.teaz.pulse.protected=true`: restart only, no stop. Details in
   `teaz_pro_pulse`'s README.
-- No database unless an app actually needs one. A database, if needed,
-  belongs to that app's own compose file, not a shared instance.
+- No database unless an app actually needs one. If it does: one shared
+  Postgres server on the VPS (compose project in `/opt/teazpro/postgres`),
+  but every app gets its **own database and own user** (named after the app,
+  owner of its database, no superuser rights), created once by hand on that
+  server. Apps don't run their own Postgres container.
+  - The backend joins the external Docker network `db` (internal) and
+    connects to `jdbc:postgresql://postgres:5432/<app>`.
+  - Credentials only via `.env`: `SPRING_DATASOURCE_URL`,
+    `SPRING_DATASOURCE_USERNAME`, `SPRING_DATASOURCE_PASSWORD`.
+  - Schema only through Flyway migrations in the app; never
+    `ddl-auto=update` in production.
+  - Never read another app's database; use its API.
+  - Local dev stays Docker-free: H2 in PostgreSQL mode. `teaz_pro_study`
+    is the reference, including the exact setup commands in its README.
 
 Docker is for deployment only. Local dev stays Docker-free.
