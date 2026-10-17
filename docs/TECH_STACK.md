@@ -178,8 +178,9 @@ login-free via a mock, prod uses the real integration, and both sit behind
 the same interface. Portal is the template to copy:
 
 - **Frontend** (`frontend/src/auth/`): components only call `useAuth()`
-  (`user`, `logout()`, `getToken()`). `index.ts` picks `keycloakAuth.ts`
-  (`keycloak-js`) when `VITE_KEYCLOAK_URL` is set, otherwise `mockAuth.ts`.
+  (`user`, `logout()`, `getToken()`). `user.roles` holds the Keycloak realm
+  roles, for showing or hiding UI; backends enforce roles themselves.
+  `index.ts` picks `keycloakAuth.ts` (`keycloak-js`) when `VITE_KEYCLOAK_URL` is set, otherwise `mockAuth.ts`.
   `.env.production` sets it, so `npm run build` gets Keycloak and
   `npm run dev` gets the mock. Keycloak runs in `login-required` mode with
   PKCE: the app only mounts after a successful login.

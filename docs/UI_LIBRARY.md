@@ -30,13 +30,13 @@ GitHub tags show the newest one):
 
 ```sh
 cd frontend
-npm install github:TeeeTime/teaz_pro_ui#v0.1.0
+npm install github:TeeeTime/teaz_pro_ui#v0.2.0
 ```
 
 `package.json` then contains:
 
 ```json
-"@teeetime/teaz-pro-ui": "github:TeeeTime/teaz_pro_ui#v0.1.0"
+"@teeetime/teaz-pro-ui": "github:TeeeTime/teaz_pro_ui#v0.2.0"
 ```
 
 npm clones the repo and builds it on install (its `prepare` script), so
@@ -124,7 +124,7 @@ Portal's `frontend/Dockerfile` already does this.
 - **Everything the [Style guide](STYLE_GUIDE.md) requires** applies to the
   library as well: tokens only, no rounded corners, Lucide icons via
   `Icon`, works at ~375px and ~700px.
-- **Pin a tag, never a branch.** `#v0.1.0`, not `#main`: a branch reference
+- **Pin a tag, never a branch.** `#v0.2.0`, not `#main`: a branch reference
   changes under you on the next `npm install`, a tag doesn't.
 
 ## Changing the library
