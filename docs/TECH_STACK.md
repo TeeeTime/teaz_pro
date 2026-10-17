@@ -220,6 +220,12 @@ temporarily and run `npm run dev -- --mode production`.
   host, so no CORS is needed. Portal's `compose.yml` and Dockerfiles are
   the template. The frontend build stage installs `git`, since
   `teaz_pro_ui` is a GitHub dependency.
+- Every container carries the label `pro.teaz.pulse.app=<App name>` (the
+  template's `compose.yml` has it), so it shows up in **Teaz Pulse**
+  (`pulse.teaz.pro`), where it can be watched and started/stopped/restarted.
+  Containers Pulse depends on (Traefik, Keycloak, its Postgres) also get
+  `pro.teaz.pulse.protected=true`: restart only, no stop. Details in
+  `teaz_pro_pulse`'s README.
 - No database unless an app actually needs one. A database, if needed,
   belongs to that app's own compose file, not a shared instance.
 
