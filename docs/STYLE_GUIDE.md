@@ -118,9 +118,12 @@ verification section).
 `src/components/layout/TopBar.vue` is meant to be reused, unmodified,
 across every app in the ecosystem — it carries no portal-specific content.
 Currently: a round avatar (initials, generated from `userName`) that opens
-a menu on click (closes on outside click or Escape), and a default slot on
-the left for the app's own branding/name (each app puts its own content
-there; portal's `App.vue` puts "Teaz Portal").
+a menu on click (closes on outside click or Escape), and on the left the
+app's short name (`appName`: "Portal", "Pulse", without "Teaz"; the default
+slot replaces it if an app ever needs custom branding). Every app except
+the portal also passes `homeUrl="https://portal.teaz.pro"`, which puts a
+home button before the name, so there's always one click back to the
+portal.
 
 The menu has two parts:
 
@@ -140,7 +143,8 @@ The menu has two parts:
   the clicked item and closes the menu — the app decides what happens,
   `TopBar` doesn't.
 
-Props: `userName` (default `'Guest User'`), `menuItems` (see above).
+Props: `appName`, `homeUrl` (see above), `userName` (default `'Guest User'`),
+`menuItems` (see above).
 
 Scope is still deliberately narrow beyond avatar+menu+theme — don't fold in
 search or notifications here without that being asked for.
