@@ -25,7 +25,7 @@ Mount the folder into the Keycloak container (in Keycloak's own compose file):
 
 ```yaml
 volumes:
-  - /path/to/teaz_pro_assets/keycloak-themes/teaz:/opt/keycloak/themes/teaz:ro
+  - /path/to/teaz_pro/keycloak-themes/teaz:/opt/keycloak/themes/teaz:ro
 ```
 
 Then in the admin console, realm `teazpro`:

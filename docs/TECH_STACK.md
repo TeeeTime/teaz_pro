@@ -15,7 +15,7 @@ when this doc says "see portal", look there for working code.
 | Frontend | Vue 3 + TypeScript, scaffolded via `create-vue`, built with Vite |
 | Backend  | Spring Boot (Maven), Java 21                          |
 | Layout   | One repo per app, each with a `frontend/` and `backend/` folder |
-| Shared   | This repo (`teaz_pro_assets`): docs, color tokens, Keycloak theme |
+| Shared   | This repo (`teaz_pro`): docs, color tokens, Keycloak theme |
 
 Versions in portal, as of this writing: Vue `^3.5`, Vite `^8.2`,
 TypeScript `~6.0`, Spring Boot `4.1.1`, Java `21`. Pin whatever the

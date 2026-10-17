@@ -1,7 +1,7 @@
 /*
  * Teaz look for Keycloak's PatternFly 5 login pages.
  *
- * Colors come only from tokens.css (copy of teaz_pro_assets/tokens/themes.css); this file
+ * Colors come only from tokens.css (copy of teaz_pro/tokens/themes.css); this file
  * just maps PatternFly's variables onto those tokens, so every login page
  * (login, reset password, OTP, errors, ...) follows the house rules without
  * overriding templates: sharp corners, IBM Plex Sans, light/dark/dark-blue.

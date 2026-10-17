@@ -1,4 +1,4 @@
-/* Copy of teaz_pro_assets/tokens/themes.css. Change it there, then copy it here. */
+/* Copy of teaz_pro/tokens/themes.css. Change it there, then copy it here. */
 
 /*
  * Color scheme tokens.
@@ -8,12 +8,12 @@
  * component tree support every theme below, and what lets a future theme be
  * added without touching component code.
  *
- * Source of truth: teaz_pro_assets/tokens/themes.css. Apps and the Keycloak
+ * Source of truth: teaz_pro/tokens/themes.css. Apps and the Keycloak
  * login theme keep verbatim copies; change this file first, then copy it.
  *
- * See teaz_pro_assets/docs/COLOR_SCHEMES.md for the full token reference and
+ * See teaz_pro/docs/COLOR_SCHEMES.md for the full token reference and
  * the checklist to follow when adding a new theme or a new themed component.
- * See teaz_pro_assets/docs/STYLE_GUIDE.md for the house styling rules (sharp
+ * See teaz_pro/docs/STYLE_GUIDE.md for the house styling rules (sharp
  * corners, no emoji iconography, typography, responsive-first) these tokens
  * exist to enforce consistently across every app in the ecosystem.
  */
