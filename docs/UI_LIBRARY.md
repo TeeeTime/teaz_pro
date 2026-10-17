@@ -152,9 +152,17 @@ Portal's `frontend/Dockerfile` already does this.
    props, major (or, while below 1.0, minor) for breaking changes such as a
    renamed prop or export. Breaking changes get a line in the commit
    message so apps know what to adjust.
-4. Update each app: set the new tag in `frontend/package.json`, run
-   `npm install`, check the app, commit `package.json` and
-   `package-lock.json` together.
+4. Update each app, from its `frontend/`:
+
+   ```sh
+   npm install github:TeeeTime/teaz_pro_ui#v0.2.0
+   ```
+
+   This sets the tag in `package.json` and the commit in
+   `package-lock.json`. Only editing the tag in `package.json` and running
+   a plain `npm install` is **not** enough: npm keeps the old commit from
+   the lock file. Check the app, commit `package.json` and
+   `package-lock.json` together, deploy with `--build`.
 
 Apps update when they want to; an older tag keeps working.
 
