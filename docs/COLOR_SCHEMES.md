@@ -2,12 +2,13 @@
 
 All theming lives in `tokens/themes.css` (this repo) as CSS custom
 properties, scoped per theme under `:root[data-theme="..."]`. The active
-theme is just an attribute on `<html>`, switched at runtime by each app's
-`frontend/src/composables/useTheme.ts` and persisted to `localStorage`.
+theme is just an attribute on `<html>`, switched at runtime by `useTheme()` from
+`teaz_pro_ui` and persisted to `localStorage`.
 
 `tokens/themes.css` is the source of truth. Consumers keep a verbatim copy:
 
-- each app: `frontend/src/styles/themes.css`
+- `teaz_pro_ui`: `src/styles/themes.css` (apps import it as
+  `@teeetime/teaz-pro-ui/themes.css`, no copy of their own)
 - the Keycloak login theme: `keycloak-themes/teaz/login/resources/css/tokens.css`
 
 Change tokens here first, then copy the file to every consumer (keep each
@@ -85,11 +86,12 @@ they're shared geometry/typography, not part of color switching.
    `--color-status-warning` is genuinely low-contrast as a lone mark on a
    light surface (1.83:1, below the 3:1 mark floor) — any UI using it must
    pair the swatch with a visible text label, never rely on the color
-   alone to carry meaning (see portal's `StatusListTile.vue` for the pattern).
+   alone to carry meaning (see `StatusListTile.vue` in `teaz_pro_ui` for the pattern).
 4. **Keep every copy in sync.** After changing `tokens/themes.css`, copy
-   it to each app's `frontend/src/styles/themes.css` and to the Keycloak
-   theme's `tokens.css` (see the list at the top), so the apps and the
-   login pages at `auth.teaz.pro` never drift apart.
+   it to `teaz_pro_ui`'s `src/styles/themes.css` (then release it and
+   bump the version in each app, see [UI library](UI_LIBRARY.md#changing-tokens))
+   and to the Keycloak theme's `tokens.css` (see the list at the top), so
+   the apps and the login pages at `auth.teaz.pro` never drift apart.
 5. **Don't theme shape/spacing per color-scheme.** Radius, spacing, and
    transition timing are intentionally theme-independent — only color
    tokens vary between `light` / `dark` / `dark-blue`.

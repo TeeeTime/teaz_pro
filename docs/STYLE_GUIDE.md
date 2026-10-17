@@ -1,7 +1,8 @@
 # Style guide
 
 House visual direction for every app in the ecosystem. Component paths
-below (`frontend/src/...`) point into `teaz_pro_portal`, the reference app.
+below (`src/components/...`) point into `teaz_pro_ui`, the shared component
+library.
 Adopted 2026-10-13, in reaction to the dashboard reading as generic/"AI
 slop" — the fix wasn't a redesign, it was removing the defaults that cause
 that look (rounded corners everywhere, emoji as icons, an unconsidered
@@ -43,7 +44,7 @@ rounded corner.
 ## No emoji
 
 Every icon comes from [Lucide](https://lucide.dev) (`@lucide/vue`),
-referenced by name through `frontend/src/components/icons/Icon.vue`
+referenced by name through `src/components/icons/Icon.vue`
 (`<Icon name="box" />`), never a Unicode emoji character in markup or mock
 data. Emoji render inconsistently across platforms, carry an informal/
 decorative tone, and are a large part of what reads as generic
@@ -105,7 +106,7 @@ not just a full desktop window:
 container-query-driven (responds to the space it actually has, not
 `window.innerWidth`, so it also works correctly if ever nested somewhere
 narrower than the full page), not a fixed set of device breakpoints bolted
-on afterward. See `frontend/src/components/grid/README.md`.
+on afterward. See `src/components/grid/README.md`.
 
 When building a new layout piece: ask what it looks like at 375px and at
 ~700px before considering it done, the same way `GridLayout`'s container
@@ -114,7 +115,7 @@ verification section).
 
 ## TopBar
 
-`frontend/src/components/layout/TopBar.vue` is meant to be reused, unmodified,
+`src/components/layout/TopBar.vue` is meant to be reused, unmodified,
 across every app in the ecosystem — it carries no portal-specific content.
 Currently: a round avatar (initials, generated from `userName`) that opens
 a menu on click (closes on outside click or Escape), and a default slot on
@@ -157,3 +158,5 @@ search or notifications here without that being asked for.
 4. Font from `--font-sans` — never hardcode a `font-family`.
 5. Check the component's own layout at ~375px and ~700px wide before
    calling it done, not just full desktop width.
+6. If it knows nothing about the app it's in, it goes into `teaz_pro_ui`,
+   not into the app (see [UI library](UI_LIBRARY.md#rules)).

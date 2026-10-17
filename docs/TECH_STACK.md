@@ -15,7 +15,7 @@ when this doc says "see portal", look there for working code.
 | Frontend | Vue 3 + TypeScript, scaffolded via `create-vue`, built with Vite |
 | Backend  | Spring Boot (Maven), Java 21                          |
 | Layout   | One repo per app, each with a `frontend/` and `backend/` folder |
-| Shared   | This repo (`teaz_pro`): docs, color tokens, Keycloak theme |
+| Shared   | This repo (`teaz_pro`): docs, color tokens, Keycloak theme; `teaz_pro_ui`: Vue components |
 
 Versions in portal, as of this writing: Vue `^3.5`, Vite `^8.2`,
 TypeScript `~6.0`, Spring Boot `4.1.1`, Java `21`. Pin whatever the
@@ -37,9 +37,9 @@ Only `--typescript` is used — no router/Pinia/ESLint/testing added by
 default. Add those per-app only if that app actually needs them (e.g. a
 multi-page app needs `--router`); don't add them reflexively.
 
-Then copy `tokens/themes.css` from this repo to
-`frontend/src/styles/themes.css` and import it first in `src/assets/main.css`
-(see [Color schemes](COLOR_SCHEMES.md)).
+Then install the shared component library `teaz_pro_ui`, load its tokens
+and styles, and put its `TopBar` into `App.vue`: step by step in
+[UI library](UI_LIBRARY.md#setting-up-an-app).
 
 **Backend**, via Spring Initializr (check `https://start.spring.io/metadata/client`
 first for the current default `bootVersion` — it moves, and the Initializr
@@ -136,14 +136,15 @@ That includes `misc.xml`, so set the project SDK yourself on each machine:
   `:root[data-theme="..."]`. Three themes exist today: `light`, `dark`,
   `dark-blue`. Components never hardcode a color. Full token reference and
   the checklist for adding a theme/token: [Color schemes](COLOR_SCHEMES.md).
-- **Reusable layout primitives**: generic, app-agnostic components (in
-  portal: `GridLayout.vue` + `GridItem.vue`, `TopBar.vue`) are kept free of
-  any app-specific knowledge on purpose — they're candidates to be pulled
-  into a standalone component library shared across apps later. When
+- **Shared components**: generic, app-agnostic components
+  (`GridLayout` + `GridItem`, `TopBar`, `Icon`, the tiles, `useTheme`) live
+  in `teaz_pro_ui` and every app installs them from there, see
+  [UI library](UI_LIBRARY.md). They're kept free of any app-specific
+  knowledge on purpose. When
   building a new generic UI piece, ask "does this know anything about what
   app it's in?" — if yes, that knowledge belongs in a wrapper component
-  (e.g. portal's `AppTile.vue`) or a slot, not the primitive itself. See
-  portal's `frontend/src/components/grid/README.md` for a worked example.
+  (e.g. portal's `QuickFormTile.vue`) or a slot, not the primitive itself. See
+  `src/components/grid/README.md` in `teaz_pro_ui` for a worked example.
 - Scaffolding note: `create-vue`'s default boilerplate (welcome page, demo
   icons, Vue-green theme in `base.css`) gets deleted, not kept around — it
   isn't part of this stack's conventions.
@@ -198,7 +199,8 @@ temporarily and run `npm run dev -- --mode production`.
   Vite and served by nginx (SPA fallback); the backend runs as a Spring
   Boot jar with `SPRING_PROFILES_ACTIVE=prod` under `/api` on the same
   host, so no CORS is needed. Portal's `compose.yml` and Dockerfiles are
-  the template.
+  the template. The frontend build stage installs `git`, since
+  `teaz_pro_ui` is a GitHub dependency.
 - No database unless an app actually needs one. A database, if needed,
   belongs to that app's own compose file, not a shared instance.
 
