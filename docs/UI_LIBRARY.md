@@ -13,7 +13,8 @@ switching and the theme tokens. Apps install it, they don't copy from it.
 | `TopBar` | App header. Left slot for the app's name/branding, avatar menu with built-in theme cycling, `menuItems` prop, emits `select`. See [Style guide](STYLE_GUIDE.md#topbar). |
 | `GridLayout`, `GridItem` | Square-cell, container-query-driven grid (`columns`, `gap`, `colSpan`, `rowSpan`, `clickable`). |
 | `Icon` | `<Icon name="box" />`, name-based lookup over Lucide. See [Style guide](STYLE_GUIDE.md#no-emoji). |
-| `AppTile`, `AgendaTile`, `StatSparklineTile`, `StatusListTile`, `SearchFieldTile` | Presentational tile contents, meant to sit inside a `GridItem`. |
+| `AppTile`, `AgendaTile`, `StatSparklineTile`, `StatusListTile`, `ProgressListTile`, `SearchFieldTile` | Presentational tile contents, meant to sit inside a `GridItem`. List tiles page through rows that don't fit. |
+| `NoAccessTile` | Stand-in for an app's tile when the user lacks its role; put it in a non-clickable `GridItem`. |
 | `useTheme()`, `THEMES`, `THEME_LABELS` | Shared theme state (`light` / `dark` / `dark-blue`) on `<html data-theme>`, saved in `localStorage`. |
 | `AppStat`, `AgendaEvent`, `StatusRow`, `*Props` | TypeScript types. |
 | `themes.css` | The tokens from [`tokens/themes.css`](../tokens/themes.css). |
