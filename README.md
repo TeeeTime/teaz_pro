@@ -10,6 +10,7 @@ login theme).
 | ---- | ---- | --- |
 | `teaz_pro` | This hub: shared docs, tokens, Keycloak theme. | – |
 | `teaz_pro_ui` | Shared Vue component library (`@teeetime/teaz-pro-ui`): TopBar, grid, icons, tiles, `useTheme`, tokens. Installed by apps from GitHub. | – |
+| `teaz_pro_template` | Template repo for a new app: the stack from `docs/TECH_STACK.md`, ready to go, plus an init script for the app name. | – |
 | `teaz_pro_portal` | Portal, the entry point linking to every app. Reference implementation of the stack. | `https://portal.teaz.pro` |
 
 Login for every app: Keycloak at `https://auth.teaz.pro`, realm `teazpro`.

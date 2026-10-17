@@ -24,7 +24,26 @@ chase matching portal's exact versions later.
 
 ## Scaffolding a new app
 
-Replace `<app>` below with the new app's name (lowercase, matches
+**Use `teaz_pro_template`.** It is everything in this doc already set up:
+frontend with `teaz_pro_ui` and Keycloak/mock auth, backend with the
+security profiles, `compose.yml` and Dockerfiles for Traefik, IntelliJ run
+configs. On GitHub: **Use this template**, clone, then
+
+```sh
+node scripts/init.mjs <app> "Teaz <App>"
+```
+
+which fills in the app name everywhere (package, `artifactId`, Keycloak
+client, subdomain). The template's `TEMPLATE.md` lists the remaining
+steps (Keycloak client, DNS, first deploy).
+
+When a convention here changes in a way every new app needs, change the
+template too.
+
+### From scratch
+
+How the template itself was built, for reference or for updating it to
+newer `create-vue`/Initializr output. Replace `<app>` below with the new app's name (lowercase, matches
 `artifactId`).
 
 **Frontend:**
