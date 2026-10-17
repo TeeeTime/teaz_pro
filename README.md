@@ -25,4 +25,5 @@ Login for every app: Keycloak at `https://auth.teaz.pro`, realm `teazpro`.
 | [`docs/STYLE_GUIDE.md`](docs/STYLE_GUIDE.md) | House visual rules: sharp corners, Lucide icons, IBM Plex Sans, responsive. |
 | [`docs/COLOR_SCHEMES.md`](docs/COLOR_SCHEMES.md) | Token reference and rules for the light / dark / dark-blue themes. |
 | [`tokens/themes.css`](tokens/themes.css) | The color and shape tokens: **source of truth**, copied into `teaz_pro_ui` (which apps install) and the Keycloak theme. |
+| [`assets/favicon.ico`](assets/favicon.ico) | The Teaz favicon (16 + 32 px): **source of truth**, copied to every app's `frontend/public/favicon.ico` (the template has it) and the Keycloak theme's `resources/img/`. Change it here, then copy it again. |
 | [`keycloak-themes/`](keycloak-themes/README.md) | `teaz` login theme for `auth.teaz.pro`. |

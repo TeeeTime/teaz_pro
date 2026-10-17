@@ -17,6 +17,7 @@ covered, and Keycloak upgrades keep working.
 | `theme.properties` | Parent theme, stylesheets, script; turns off keycloak.v2's own dark mode. |
 | `resources/css/tokens.css` | **Verbatim copy** of `tokens/themes.css` in this repo. When the tokens change there, copy the file here again (keep the one-line header). |
 | `resources/css/teaz.css` | Maps PatternFly's variables onto the tokens, plus a few layout tweaks. Never hardcode a color here either. |
+| `resources/img/favicon.ico` | Copy of `assets/favicon.ico` in this repo; `keycloak.v2` loads its favicon from this path. |
 | `resources/js/theme.js` | Applies the theme before first paint and adds the theme toggle (top right, cycles like the TopBar). Stored in `localStorage` on the auth domain, default follows the OS setting. |
 
 ## Deploying
