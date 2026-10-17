@@ -1,0 +1,173 @@
+/*
+ * Teaz look for Keycloak's PatternFly 5 login pages.
+ *
+ * Colors come only from tokens.css (copy of teaz_pro_assets/tokens/themes.css); this file
+ * just maps PatternFly's variables onto those tokens, so every login page
+ * (login, reset password, OTP, errors, ...) follows the house rules without
+ * overriding templates: sharp corners, IBM Plex Sans, light/dark/dark-blue.
+ * `:root[data-theme]` outranks PatternFly's `:root` and `:where(.pf-v5-theme-dark)`.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+
+:root[data-theme] {
+  --pf-v5-global--FontFamily--text: var(--font-sans);
+  --pf-v5-global--FontFamily--heading: var(--font-sans);
+  --pf-v5-global--FontFamily--text--vf: var(--font-sans);
+  --pf-v5-global--FontFamily--heading--vf: var(--font-sans);
+
+  --pf-v5-global--BorderRadius--sm: var(--radius-sm);
+  --pf-v5-global--BorderRadius--lg: var(--radius-lg);
+
+  --pf-v5-global--BackgroundColor--100: var(--color-surface);
+  --pf-v5-global--BackgroundColor--150: var(--color-surface);
+  --pf-v5-global--BackgroundColor--200: var(--color-bg);
+  --pf-v5-global--BackgroundColor--300: var(--color-surface-hover);
+  --pf-v5-global--BackgroundColor--400: var(--color-surface-active);
+  --pf-v5-global--BackgroundColor--light-100: var(--color-surface);
+  --pf-v5-global--BackgroundColor--light-200: var(--color-surface-hover);
+  --pf-v5-global--BackgroundColor--light-300: var(--color-surface-active);
+
+  --pf-v5-global--Color--100: var(--color-text-primary);
+  --pf-v5-global--Color--200: var(--color-text-secondary);
+
+  --pf-v5-global--BorderColor--100: var(--color-border);
+  --pf-v5-global--BorderColor--200: var(--color-text-secondary);
+  --pf-v5-global--BorderColor--300: var(--color-border);
+
+  --pf-v5-global--primary-color--100: var(--color-accent);
+  --pf-v5-global--primary-color--200: var(--color-accent-hover);
+  --pf-v5-global--active-color--100: var(--color-accent);
+  --pf-v5-global--link--Color: var(--color-accent);
+  --pf-v5-global--link--Color--hover: var(--color-accent-hover);
+  --pf-v5-global--link--Color--visited: var(--color-accent);
+
+  --pf-v5-global--danger-color--100: var(--color-status-critical);
+  --pf-v5-global--success-color--100: var(--color-status-good);
+  --pf-v5-global--warning-color--100: var(--color-status-warning);
+
+  --pf-v5-global--BoxShadow--sm: 0 1px 2px var(--color-shadow);
+  --pf-v5-global--BoxShadow--md: 0 2px 6px var(--color-shadow);
+  --pf-v5-global--BoxShadow--lg: 0 4px 12px var(--color-shadow-strong);
+  --pf-v5-global--BoxShadow--xl: 0 4px 12px var(--color-shadow-strong);
+}
+
+:root[data-theme='dark'],
+:root[data-theme='dark-blue'] {
+  /* Native controls (scrollbars, autofill, select popups) follow the theme. */
+  color-scheme: dark;
+}
+
+/* Page: flat house background instead of Keycloak's photo backdrop. */
+.login-pf body {
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+}
+
+#kc-header-wrapper {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-primary) !important;
+}
+
+:root[data-theme] .pf-v5-c-login {
+  --pf-v5-c-login__main--BackgroundColor: var(--color-surface);
+}
+
+.pf-v5-c-login__main {
+  border: 1px solid var(--color-border);
+}
+
+/* Replaces keycloak.v2's colored top stripe on the card. */
+.pf-v5-c-login__main-header {
+  border-top: none;
+}
+
+:root[data-theme] .pf-v5-c-title {
+  --pf-v5-c-title--m-3xl--FontSize: 1.5rem;
+  --pf-v5-c-title--m-3xl--FontWeight: 600;
+}
+
+/* Inputs: one plain border all round instead of PatternFly's underline style. */
+:root[data-theme] .pf-v5-c-form-control {
+  --pf-v5-c-form-control--before--BorderTopColor: var(--color-border);
+  --pf-v5-c-form-control--before--BorderRightColor: var(--color-border);
+  --pf-v5-c-form-control--before--BorderLeftColor: var(--color-border);
+  --pf-v5-c-form-control--before--BorderBottomColor: var(--color-border);
+  --pf-v5-c-form-control--before--BorderBottomWidth: var(--pf-v5-global--BorderWidth--sm);
+  --pf-v5-c-form-control--after--BorderBottomColor: transparent;
+  --pf-v5-c-form-control--hover--after--BorderBottomColor: var(--color-text-secondary);
+  --pf-v5-c-form-control--focus--after--BorderBottomColor: var(--color-accent);
+  --pf-v5-c-form-control--BackgroundColor: var(--color-surface);
+}
+
+/* Square accent focus ring instead of the browser's rounded default. */
+.pf-v5-c-form-control > :is(input, select, textarea):focus-visible,
+.pf-v5-c-button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+:root[data-theme] .pf-v5-c-button {
+  --pf-v5-c-button--FontWeight: 600;
+  --pf-v5-c-button--m-primary--BackgroundColor: var(--color-accent);
+  --pf-v5-c-button--m-primary--Color: var(--color-text-on-accent);
+  --pf-v5-c-button--m-primary--hover--BackgroundColor: var(--color-accent-hover);
+  --pf-v5-c-button--m-primary--hover--Color: var(--color-text-on-accent);
+  --pf-v5-c-button--m-primary--focus--BackgroundColor: var(--color-accent-hover);
+  --pf-v5-c-button--m-primary--focus--Color: var(--color-text-on-accent);
+  --pf-v5-c-button--m-primary--active--BackgroundColor: var(--color-accent-hover);
+  --pf-v5-c-button--m-primary--active--Color: var(--color-text-on-accent);
+  --pf-v5-c-button--m-secondary--Color: var(--color-accent);
+  --pf-v5-c-button--m-secondary--after--BorderColor: var(--color-accent);
+  --pf-v5-c-button--m-secondary--hover--Color: var(--color-accent-hover);
+  --pf-v5-c-button--m-secondary--hover--after--BorderColor: var(--color-accent-hover);
+}
+
+/* Theme toggle, top right like the apps' TopBar menu. */
+.teaz-theme-toggle {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.teaz-theme-toggle:hover {
+  background-color: var(--color-surface-hover);
+}
+
+.teaz-theme-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.teaz-theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-secondary);
+}
+
+/* Narrow screens: the card spans the full width, so drop the toggle's label. */
+@media (max-width: 420px) {
+  .teaz-theme-toggle span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}

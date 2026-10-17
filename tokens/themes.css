@@ -1,0 +1,119 @@
+/*
+ * Color scheme tokens.
+ *
+ * Every component must read colors exclusively from these custom properties
+ * (never hardcode a hex value in a component). This is what lets a single
+ * component tree support every theme below, and what lets a future theme be
+ * added without touching component code.
+ *
+ * Source of truth: teaz_pro_assets/tokens/themes.css. Apps and the Keycloak
+ * login theme keep verbatim copies; change this file first, then copy it.
+ *
+ * See teaz_pro_assets/docs/COLOR_SCHEMES.md for the full token reference and
+ * the checklist to follow when adding a new theme or a new themed component.
+ * See teaz_pro_assets/docs/STYLE_GUIDE.md for the house styling rules (sharp
+ * corners, no emoji iconography, typography, responsive-first) these tokens
+ * exist to enforce consistently across every app in the ecosystem.
+ */
+
+:root {
+  /* shape tokens: shared across all themes, not part of color switching */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+
+  --transition-fast: 150ms ease;
+  --transition-medium: 250ms ease;
+
+  /* House typeface. See STYLE_GUIDE.md — IBM Plex Sans, loaded by each consumer (Google Fonts). */
+  --font-sans:
+    'IBM Plex Sans',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+
+:root[data-theme='light'] {
+  --color-bg: #f3f4f7;
+  --color-surface: #ffffff;
+  --color-surface-hover: #eef0f4;
+  --color-surface-active: #e6e9f0;
+  --color-border: #e1e4ea;
+
+  --color-text-primary: #1a1d24;
+  --color-text-secondary: #5c6472;
+  --color-text-on-accent: #ffffff;
+
+  --color-accent: #3b6df0;
+  --color-accent-hover: #2f5bd6;
+
+  /*
+   * Status colors are reserved for state (good/warning/critical), never
+   * reused for brand/interactive accents or series identity — kept
+   * intentionally separate from --color-accent.
+   *
+   * --color-status-good is specifically the text-safe variant (darker than
+   * the mark color below would need to be), sized for 4.5:1+ contrast as
+   * inline text (a stat tile's delta), not just a 3:1 mark. Warning/critical
+   * are used as swatch marks, not text — per the dataviz skill's own
+   * palette, warning in particular is low-contrast as a lone swatch on a
+   * light surface, which is why every status swatch in this app ships with
+   * a visible text label next to it, never color alone.
+   */
+  --color-status-good: #006300;
+  --color-status-warning: #fab219;
+  --color-status-critical: #d03b3b;
+
+  --color-shadow: rgba(16, 24, 40, 0.08);
+  --color-shadow-strong: rgba(16, 24, 40, 0.14);
+}
+
+:root[data-theme='dark'] {
+  --color-bg: #15171c;
+  --color-surface: #1e2127;
+  --color-surface-hover: #262a32;
+  --color-surface-active: #2c313a;
+  --color-border: #2d313a;
+
+  --color-text-primary: #e9eaed;
+  --color-text-secondary: #9aa1ad;
+  --color-text-on-accent: #0b1020;
+
+  --color-accent: #5b8cff;
+  --color-accent-hover: #7aa0ff;
+
+  /* Status colors don't vary across dark modes, only light vs. dark —
+     same values in dark-blue below (see the light theme's comment). */
+  --color-status-good: #0ca30c;
+  --color-status-warning: #fab219;
+  --color-status-critical: #d03b3b;
+
+  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-shadow-strong: rgba(0, 0, 0, 0.55);
+}
+
+:root[data-theme='dark-blue'] {
+  --color-bg: #0b1420;
+  --color-surface: #101f32;
+  --color-surface-hover: #15283f;
+  --color-surface-active: #1a3049;
+  --color-border: #1c3350;
+
+  --color-text-primary: #e6edf7;
+  --color-text-secondary: #8da3c0;
+  --color-text-on-accent: #061018;
+
+  --color-accent: #4da3ff;
+  --color-accent-hover: #6fb6ff;
+
+  --color-status-good: #0ca30c;
+  --color-status-warning: #fab219;
+  --color-status-critical: #d03b3b;
+
+  --color-shadow: rgba(0, 8, 24, 0.5);
+  --color-shadow-strong: rgba(0, 8, 24, 0.65);
+}
