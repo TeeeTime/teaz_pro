@@ -70,6 +70,30 @@
 
   --color-shadow: rgba(16, 24, 40, 0.08);
   --color-shadow-strong: rgba(16, 24, 40, 0.14);
+
+  /*
+   * Content colors: what users pick for text and text backgrounds in
+   * written content (e.g. Wiki pages), stored by name, never as hex. Each
+   * --color-content-<name> is 4.5:1+ on surface and bg, --color-text-primary
+   * is 4.5:1+ on every -bg, and every text color stays 3:1+ on every -bg.
+   * Not for UI chrome, state or chart series.
+   */
+  --color-content-gray: #5f6673;
+  --color-content-gray-bg: #eceef2;
+  --color-content-red: #c22828;
+  --color-content-red-bg: #fde2e2;
+  --color-content-orange: #ad4f06;
+  --color-content-orange-bg: #fde8d3;
+  --color-content-yellow: #856500;
+  --color-content-yellow-bg: #fbf1c0;
+  --color-content-green: #1d7a24;
+  --color-content-green-bg: #dcf2dd;
+  --color-content-blue: #2556d4;
+  --color-content-blue-bg: #dee8fd;
+  --color-content-purple: #7a3ae6;
+  --color-content-purple-bg: #ece4fd;
+  --color-content-pink: #bb1a5e;
+  --color-content-pink-bg: #fbe1ed;
 }
 
 :root[data-theme='dark'] {
@@ -94,6 +118,23 @@
 
   --color-shadow: rgba(0, 0, 0, 0.4);
   --color-shadow-strong: rgba(0, 0, 0, 0.55);
+
+  --color-content-gray: #a6acb7;
+  --color-content-gray-bg: #353a44;
+  --color-content-red: #ff8c8c;
+  --color-content-red-bg: #4b2427;
+  --color-content-orange: #ffa860;
+  --color-content-orange-bg: #4a3020;
+  --color-content-yellow: #ecc94b;
+  --color-content-yellow-bg: #433a1a;
+  --color-content-green: #6fd17b;
+  --color-content-green-bg: #1f3d26;
+  --color-content-blue: #8db2ff;
+  --color-content-blue-bg: #23355b;
+  --color-content-purple: #c5a7ff;
+  --color-content-purple-bg: #372b56;
+  --color-content-pink: #ff90c6;
+  --color-content-pink-bg: #4a2439;
 }
 
 :root[data-theme='dark-blue'] {
@@ -116,4 +157,21 @@
 
   --color-shadow: rgba(0, 8, 24, 0.5);
   --color-shadow-strong: rgba(0, 8, 24, 0.65);
+
+  --color-content-gray: #a3b2c7;
+  --color-content-gray-bg: #243650;
+  --color-content-red: #ff8c8c;
+  --color-content-red-bg: #46202c;
+  --color-content-orange: #ffa860;
+  --color-content-orange-bg: #44301f;
+  --color-content-yellow: #ecc94b;
+  --color-content-yellow-bg: #3f391d;
+  --color-content-green: #6fd17b;
+  --color-content-green-bg: #1b3b2d;
+  --color-content-blue: #8db8ff;
+  --color-content-blue-bg: #1d3a63;
+  --color-content-purple: #c5a7ff;
+  --color-content-purple-bg: #33295b;
+  --color-content-pink: #ff90c6;
+  --color-content-pink-bg: #46213e;
 }

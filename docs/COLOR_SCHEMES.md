@@ -36,6 +36,8 @@ theme — same structure as `dark`, different hue).
 | `--color-status-critical`| Reserved for failed/down state, used as a small **swatch mark**, always paired with a visible text label. |
 | `--color-shadow`         | Resting elevation shadow color (use with low blur).   |
 | `--color-shadow-strong`  | Raised/hover elevation shadow color.                  |
+| `--color-content-<name>` | User-chosen **text** color in written content (Wiki pages), `<name>` one of `gray`, `red`, `orange`, `yellow`, `green`, `blue`, `purple`, `pink`. 4.5:1+ on `--color-surface` and `--color-bg`. See rule 6. |
+| `--color-content-<name>-bg` | User-chosen **text background** (highlight) in written content, same names. `--color-text-primary` is 4.5:1+ on each, every `--color-content-<name>` 3:1+ on each. |
 
 Shape tokens (`--radius-sm`, `--radius-md`, `--radius-lg` — all `0`, see
 `STYLE_GUIDE.md`) and `--font-sans` are defined once on bare `:root` —
@@ -58,6 +60,19 @@ they're shared geometry/typography, not part of color switching.
 | `--color-status-good`      | `#006300` | `#0ca30c` | `#0ca30c` |
 | `--color-status-warning`   | `#fab219` | `#fab219` | `#fab219` |
 | `--color-status-critical`  | `#d03b3b` | `#d03b3b` | `#d03b3b` |
+
+Content colors (`--color-content-<name>` / `--color-content-<name>-bg`):
+
+| Name     | light               | dark                | dark-blue           |
+| -------- | ------------------- | ------------------- | ------------------- |
+| `gray`   | `#5f6673` / `#eceef2` | `#a6acb7` / `#353a44` | `#a3b2c7` / `#243650` |
+| `red`    | `#c22828` / `#fde2e2` | `#ff8c8c` / `#4b2427` | `#ff8c8c` / `#46202c` |
+| `orange` | `#ad4f06` / `#fde8d3` | `#ffa860` / `#4a3020` | `#ffa860` / `#44301f` |
+| `yellow` | `#856500` / `#fbf1c0` | `#ecc94b` / `#433a1a` | `#ecc94b` / `#3f391d` |
+| `green`  | `#1d7a24` / `#dcf2dd` | `#6fd17b` / `#1f3d26` | `#6fd17b` / `#1b3b2d` |
+| `blue`   | `#2556d4` / `#dee8fd` | `#8db2ff` / `#23355b` | `#8db8ff` / `#1d3a63` |
+| `purple` | `#7a3ae6` / `#ece4fd` | `#c5a7ff` / `#372b56` | `#c5a7ff` / `#33295b` |
+| `pink`   | `#bb1a5e` / `#fbe1ed` | `#ff90c6` / `#4a2439` | `#ff90c6` / `#46213e` |
 
 ## Rules for staying consistent
 
@@ -95,3 +110,9 @@ they're shared geometry/typography, not part of color switching.
 5. **Don't theme shape/spacing per color-scheme.** Radius, spacing, and
    transition timing are intentionally theme-independent — only color
    tokens vary between `light` / `dark` / `dark-blue`.
+6. **User content stores color names, never values.** Where users color
+   their own text (Wiki's editor), the content keeps the name (`red`) and
+   the app maps it to `--color-content-red` / `--color-content-red-bg`, so
+   colored text stays readable when the reader's theme differs from the
+   writer's. A new content color or theme has to keep the contrast
+   guarantees in the token reference above, for every combination.
