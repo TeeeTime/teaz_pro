@@ -17,6 +17,7 @@ login theme).
 | `teaz_pro_fitness` | Fitness: each user links their Strava account and sees their latest runs and a weekly-kilometers chart; `/api/runs/latest` and `/api/runs/weekly` for Portal tiles. | `https://fitness.teaz.pro` |
 | `teaz_pro_calendar` | Calendar: each user connects their Apple (iCloud) calendar over CalDAV and sees their events by day, week and month; synced into its own database every 15 minutes. | `https://calendar.teaz.pro` |
 | `teaz_pro_wiki` | Wiki: Confluence-like wikis owned by a user, private or public (readable without login), shared with editors/viewers; categories, sub-categories and pages with a rich editor (tables, image layouts, LaTeX), search and comments; link previews for shared links. | `https://wiki.teaz.pro` |
+| `teaz_pro_account` | Account: the user's account. Profile pictures for the whole ecosystem at `/api/avatars/{sub}`; username, password and 2FA through Keycloak's pages; disconnecting Wiki MCP. | `https://account.teaz.pro` |
 | `teaz_pro_portal` | Portal, the entry point linking to every app. Reference implementation of the stack. | `https://portal.teaz.pro` |
 
 Login for every app: Keycloak at `https://auth.teaz.pro`, realm `teazpro`.

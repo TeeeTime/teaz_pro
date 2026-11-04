@@ -10,7 +10,8 @@ switching and the theme tokens. Apps install it, they don't copy from it.
 
 | Export | What |
 | ------ | ---- |
-| `TopBar` | App header. Left slot for the app's name/branding, avatar menu with built-in theme cycling, `menuItems` prop, emits `select`. See [Style guide](STYLE_GUIDE.md#topbar). |
+| `TopBar` | App header. Left slot for the app's name/branding, avatar menu with built-in theme cycling, `avatarUrl` and `menuItems` props, emits `select`. See [Style guide](STYLE_GUIDE.md#topbar). |
+| `Avatar`, `avatarUrl()`, `ACCOUNT_URL` | A user's profile picture with an initials fallback, its URL from the Keycloak user id, and the address of Teaz Account. See [Tech stack](TECH_STACK.md#accounts-and-profile-pictures). |
 | `GridLayout`, `GridItem` | Square-cell, container-query-driven grid (`columns`, `gap`, `colSpan`, `rowSpan`, `clickable`). |
 | `Icon` | `<Icon name="box" />`, name-based lookup over Lucide. See [Style guide](STYLE_GUIDE.md#no-emoji). |
 | `AppTile`, `AgendaTile`, `StatSparklineTile`, `StatusListTile`, `ProgressListTile`, `SearchFieldTile` | Presentational tile contents, meant to sit inside a `GridItem`. List tiles page through rows that don't fit. |
@@ -31,13 +32,13 @@ GitHub tags show the newest one):
 
 ```sh
 cd frontend
-npm install github:TeeeTime/teaz_pro_ui#v0.3.0
+npm install github:TeeeTime/teaz_pro_ui#v0.8.0
 ```
 
 `package.json` then contains:
 
 ```json
-"@teeetime/teaz-pro-ui": "github:TeeeTime/teaz_pro_ui#v0.3.0"
+"@teeetime/teaz-pro-ui": "github:TeeeTime/teaz_pro_ui#v0.8.0"
 ```
 
 npm clones the repo and builds it on install (its `prepare` script), so
@@ -70,7 +71,7 @@ own copy of `themes.css` or `base.css`.
 
 ```vue
 <script setup lang="ts">
-import { TopBar, useTheme } from '@teeetime/teaz-pro-ui'
+import { ACCOUNT_URL, TopBar, avatarUrl, useTheme } from '@teeetime/teaz-pro-ui'
 import type { TopBarMenuItem } from '@teeetime/teaz-pro-ui'
 import { useAuth } from '@/auth'
 
@@ -81,11 +82,16 @@ const auth = useAuth()
 
 function onMenuSelect(item: TopBarMenuItem) {
   if (item.label === 'Sign out') auth.logout()
+  else if (item.label === 'Account') window.location.href = ACCOUNT_URL
 }
 </script>
 
 <template>
-  <TopBar :user-name="auth.user.value?.name" @select="onMenuSelect">
+  <TopBar
+    :user-name="auth.user.value?.name"
+    :avatar-url="avatarUrl(auth.user.value?.id, 64)"
+    @select="onMenuSelect"
+  >
     <span class="app-name">Teaz Inventory</span>
   </TopBar>
   <!-- app content -->
@@ -125,7 +131,7 @@ Portal's `frontend/Dockerfile` already does this.
 - **Everything the [Style guide](STYLE_GUIDE.md) requires** applies to the
   library as well: tokens only, no rounded corners, Lucide icons via
   `Icon`, works at ~375px and ~700px.
-- **Pin a tag, never a branch.** `#v0.3.0`, not `#main`: a branch reference
+- **Pin a tag, never a branch.** `#v0.8.0`, not `#main`: a branch reference
   changes under you on the next `npm install`, a tag doesn't.
 
 ## Changing the library
@@ -156,7 +162,7 @@ Portal's `frontend/Dockerfile` already does this.
 4. Update each app, from its `frontend/`:
 
    ```sh
-   npm install github:TeeeTime/teaz_pro_ui#v0.3.0
+   npm install github:TeeeTime/teaz_pro_ui#v0.8.0
    ```
 
    This sets the tag in `package.json` and the commit in

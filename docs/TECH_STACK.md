@@ -178,8 +178,9 @@ login-free via a mock, prod uses the real integration, and both sit behind
 the same interface. Portal is the template to copy:
 
 - **Frontend** (`frontend/src/auth/`): components only call `useAuth()`
-  (`user`, `logout()`, `getToken()`). `user.roles` holds the Keycloak realm
-  roles, for showing or hiding UI; backends enforce roles themselves.
+  (`user`, `logout()`, `getToken()`). `user.id` is the Keycloak user id
+  (`sub`), `user.roles` the Keycloak realm roles, for showing or hiding UI;
+  backends enforce roles themselves.
   `index.ts` picks `keycloakAuth.ts` (`keycloak-js`) when `VITE_KEYCLOAK_URL` is set, otherwise `mockAuth.ts`.
   `.env.production` sets it, so `npm run build` gets Keycloak and
   `npm run dev` gets the mock. Keycloak runs in `login-required` mode with
@@ -197,6 +198,24 @@ Keycloak client setup for an app (Clients → Create client in realm `teazpro`):
 - Valid redirect URIs `https://<app>.teaz.pro/*`, Valid post logout
   redirect URIs `https://<app>.teaz.pro/*`, Web origins
   `https://<app>.teaz.pro`.
+
+### Accounts and profile pictures
+
+`teaz_pro_account` at `https://account.teaz.pro` is the one place for a
+user's account. Apps don't build their own account pages: the TopBar's
+**Account** item links there.
+
+Profile pictures live in Account, keyed by the Keycloak user id:
+
+```
+https://account.teaz.pro/api/avatars/{sub}?size=128
+```
+
+The URL is public, so it works in a plain `<img>`, for guests too. Sizes are
+64, 128, 256 and 512 px; a user without a picture gets a 404. Apps don't build
+this URL themselves: `avatarUrl(user.id, size)` from `teaz_pro_ui` does, and
+`TopBar` and `Avatar` fall back to the initials on a 404. Details in
+`teaz_pro_account`'s README.
 
 To test against the real Keycloak from your machine, add
 `http://localhost:5173/*` and `http://localhost:5173` to the client

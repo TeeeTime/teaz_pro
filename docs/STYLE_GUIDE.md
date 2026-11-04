@@ -117,8 +117,8 @@ verification section).
 
 `src/components/layout/TopBar.vue` is meant to be reused, unmodified,
 across every app in the ecosystem — it carries no portal-specific content.
-Currently: a round avatar (initials, generated from `userName`) that opens
-a menu on click (closes on outside click or Escape), and on the left the
+Currently: a round avatar (the profile picture from `avatarUrl`, or the
+initials of `userName` without one) that opens a menu on click (closes on outside click or Escape), and on the left the
 app's short name (`appName`: "Portal", "Pulse", without "Teaz"; the default
 slot replaces it if an app ever needs custom branding). Every app except
 the portal also passes `homeUrl="https://portal.teaz.pro"`, which puts a
@@ -139,12 +139,17 @@ The menu has two parts:
   There used to be a separate 3-button `ThemeSwitcher` component sitting in
   the dashboard's own page header; it's gone, replaced by this.
 - **App-provided items** below the divider — `menuItems` prop (default
-  Profile/Settings/Sign out, each `{ label, icon? }`). Emits `select` with
+  Account/Sign out, each `{ label, icon? }`; Account links to
+  `account.teaz.pro`, which is why apps have no profile or settings items of
+  their own). Emits `select` with
   the clicked item and closes the menu — the app decides what happens,
   `TopBar` doesn't.
 
 Props: `appName`, `homeUrl` (see above), `userName` (default `'Guest User'`),
-`menuItems` (see above).
+`avatarUrl`, `menuItems` (see above).
+
+Elsewhere, `Avatar` shows a profile picture with the same fallback. It's
+square by default, as in Wiki's comments: `round` is for the TopBar only.
 
 Scope is still deliberately narrow beyond avatar+menu+theme — don't fold in
 search or notifications here without that being asked for.
